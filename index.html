@@ -1,0 +1,58 @@
+<!doctype html>
+<html ng-app="uxCards">
+<head>
+    <title>UX Technique Cards</title>
+    <link rel="stylesheet" href="css/main.css">
+    <meta name="description" content="UX Technique Cards by Melinda Miller &amp; Cate Kompare This work is licensed under the Creative Commons Attribution- NonCommercial-ShareAlike 4.0 International License.">
+</head>
+<body ng-controller="main">
+
+    <span>Cards remaining: {{cardList.length}}</span><br/>
+    <span>Current Card:</span><br/>
+    <pre>{{currentCard}}</pre>
+
+    <footer>
+        UX Technique Cards by Melinda Miller &amp; Cate Kompare.<br/>
+        This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.<br/> 
+        To view a copy of this license, visit <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">http://creativecommons.org/licenses/by-nc-sa/4.0/.</a>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+
+    <script>
+        'use strict';
+
+        var uxApp = angular.module('uxCards', [])
+        .controller('main', function($scope, $http){
+            $http.get('cardText.json').then(function(results){
+                var cardList = results.data,
+                    currentCard = cardList.pop();
+
+                $scope.cardList = cardList;
+                $scope.currentCard = currentCard;
+            });
+            
+            $scope.cardsInYesPile = [];
+            $scope.cardsInNoPile = [];
+            $scope.cardsRejected = [];
+
+            this.sortCardYes = function sortCardYes( card ){
+                $scope.cardsInYesPile.push(card);
+            };
+
+            this.sortCardNo = function sortCardNo( card ){
+                $scope.cardsInNoPile.push(card);
+            };
+
+            this.rejectCard = function rejectCard( card ){
+                $scope.cardsRejected.push(card);
+            };
+
+            this.nextCard = function nextCard( card ){
+                $scope.lastCard = currentCard;
+                $scope.currentCard = $scope.cardList.pop(); 
+            }
+        });
+    </script>
+</body>
+</html>
