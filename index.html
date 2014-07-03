@@ -23,15 +23,15 @@
     <aside ng-show="ready && cardList.length === 0">
         <header>You indicated that these are issues:</header>
         <ul>
-            <li ng-repeat="card in cardsInYesPile">{{card.problem}}</li>
+            <li ng-repeat="card in cardsInYesPile | orderBy:card.solution">{{card.problem}} -- <span class="solution">{{card.solution}}</span></li>
         </ul>
         <header>You indicated that these are not issues:</header>
         <ul>
-            <li ng-repeat="card in cardsInNoPile">{{card.problem}}</li>
+            <li ng-repeat="card in cardsInNoPile | orderBy:card.solution">{{card.problem}} -- <span class="solution">{{card.solution}}</span></li>
         </ul>
         <header>You skipped these:</header>
         <ul>
-            <li ng-repeat="card in cardsRejected">{{card.problem}}</li>
+            <li ng-repeat="card in cardsRejected | orderBy:card.solution">{{card.problem}} -- <span class="solution">{{card.solution}}</span></li>
         </ul>
     </aside>
 

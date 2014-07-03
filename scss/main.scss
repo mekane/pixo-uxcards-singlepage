@@ -135,8 +135,13 @@ $noLighter: #f2dede;
 
 aside {
     header {
+        padding: 8px 0 8px 20px;
         text-align: left;
-        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+    }
+
+    .solution {
+        color: #cff;
     }
 }
 

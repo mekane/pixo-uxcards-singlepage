@@ -95,11 +95,19 @@ main {
   border: 5px solid #eee;
   left: 50%;
   bottom: 0;
-  margin-left: -50px; }
+  margin-left: -50px;
+  transition: all 0.2s ease-in; }
+  .skip:hover {
+    background-color: #444;
+    box-shadow: 0 0 30px 0 #ccc;
+    transition: all 0.2s ease-in; }
 
 aside header {
+  padding: 8px 0 8px 20px;
   text-align: left;
-  border-bottom: 1px solid black; }
+  border-top: 1px solid black; }
+aside .solution {
+  color: #cff; }
 
 footer {
   display: none;
