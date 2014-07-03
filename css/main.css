@@ -19,39 +19,80 @@ header {
   font-size: 18px; }
 
 main {
-  width: 500px;
-  margin: 110px auto;
-  padding: 110px 165px 220px;
+  width: 50%;
+  min-width: 800px;
+  margin: 100px auto;
+  padding: 0 120px 120px;
   position: relative; }
+
+.card {
+  border: 2px solid #8a6d3b;
+  border-radius: 6px;
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  padding: 50px; }
+
+.yes,
+.no,
+.skip {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+  text-align: center;
+  font-size: 80px;
+  line-height: 90px;
+  color: white; }
 
 .yes,
 .no {
-  width: 100px;
-  height: 100px;
   border-radius: 100px;
   border: 5px solid #444444;
-  position: absolute;
-  top: 0;
-  cursor: pointer;
-  color: white;
-  text-align: center;
-  font-size: 80px;
-  line-height: 90px; }
+  top: 20px; }
 
 .yes {
   left: 0;
   line-height: 100px;
-  background: #dff0d8;
+  background: #d6e9c6;
   color: #3c763d;
-  border-color: #d6e9c6; }
+  border-color: #3c763d;
+  transition: all 0.2s ease-in; }
+  .yes:hover {
+    background-color: #dff0d8;
+    box-shadow: 0 0 30px 0 #d6e9c6;
+    transition: all 0.2s ease-in; }
 
 .no {
   right: 0;
-  background: #f2dede;
+  background: #ebccd1;
   color: #a94442;
-  border-color: #ebccd1; }
+  border-color: #a94442;
+  transition: all 0.2s ease-in; }
+  .no:hover {
+    background-color: #f2dede;
+    box-shadow: 0 0 30px 0 #ebccd1;
+    transition: all 0.2s ease-in; }
+
+.skip {
+  width: 100px;
+  height: 100px;
+  background-color: #3f3f3f;
+  border: 5px solid #eee;
+  left: 50%;
+  bottom: 0;
+  margin-left: -50px; }
+
+aside header {
+  text-align: left;
+  border-bottom: 1px solid black; }
 
 footer {
+  display: none;
+  width: 100%;
   color: #bbb;
   background: #444444;
   text-align: center;

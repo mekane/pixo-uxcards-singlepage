@@ -1,7 +1,6 @@
-$buttonWidth: 100px;
-$buttonBorder: 5px;
-$buttonSize: $buttonWidth + $buttonBorder * 2;
+$buttonSize: 100px;
 $barColor: #444;
+$all: all .2s ease-in; 
 
 * {
     box-sizing: border-box;
@@ -28,51 +27,100 @@ header {
 }
 
 main {
-    width: 500px;
+    width: 50%;
+    min-width: 800px;
     margin: $buttonSize auto;
-    padding: $buttonSize $buttonSize*1.5 $buttonSize*2;
+    padding: 0 $buttonSize+20 $buttonSize+20;
     position: relative;
 }
 
 .card {
+    border: 2px solid #8a6d3b;
+    border-radius: 6px;
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    padding: $buttonSize / 2;
 
 }
 
 .yes,
-.no {
-    width: $buttonWidth;
-    height: $buttonWidth;
-    border-radius: $buttonWidth;
-    border: $buttonBorder solid $barColor;
+.no,
+.skip {
+    width: $buttonSize;
+    height: $buttonSize;
     position: absolute;
-    top: 0;
     cursor: pointer;
-    color: white;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
     text-align: center;
-    font-size: $buttonWidth * 0.8;
-    line-height: $buttonWidth * 0.9;
+    font-size: $buttonSize * 0.8;
+    line-height: $buttonSize * 0.9;
+    color: white;
 }
 
+.yes,
+.no {
+    border-radius: $buttonSize;
+    border: 5px solid $barColor;
+    top: 20px;
+}
+
+$yesDark: #3c763d;
+$yesLight: #d6e9c6;
+$yesLighter: #dff0d8;
 .yes {
     left: 0;
-    line-height: $buttonWidth;
-    background: #dff0d8;
-    color: #3c763d;
-    border-color: #d6e9c6;
+    line-height: $buttonSize;
+    background: $yesLight; 
+    color: $yesDark;
+    border-color: $yesDark;
+    &:hover {
+        background-color: $yesLighter;
+        box-shadow: 0 0 30px 0 $yesLight;
+        transition: $all;
+    }
+    transition: $all;
 }
 
+$noDark: #a94442;
+$noLight: #ebccd1;
+$noLighter: #f2dede;
 .no {
     right: 0;
-    background: #f2dede;
-    color: #a94442;
-    border-color: #ebccd1;
+    background:$noLight;
+    color: $noDark;
+    border-color: $noDark;
+    &:hover {
+        background-color: $noLighter;
+        box-shadow: 0 0 30px 0 $noLight;
+        transition: $all;
+    }
+    transition: $all;
 }
 
 .skip {
+    width: $buttonSize;
+    height: $buttonSize;
+    background-color: #3f3f3f;
+    border: 5px solid #eee;
+    left: 50%;
+    bottom: 0;
+    margin-left: -$buttonSize/2;
+}
 
+
+aside {
+    header {
+        text-align: left;
+        border-bottom: 1px solid black;
+    }
 }
 
 footer {
+    display: none;
+    width: 100%;
     color: #bbb;
     background: $barColor; 
     text-align: center;
