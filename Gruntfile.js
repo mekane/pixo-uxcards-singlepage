@@ -27,6 +27,9 @@ module.exports = function(grunt) {
             options: {
                 spawn: false,
             },
+        },
+        html : {
+            files: ['*.html']
         } 
     }
 
