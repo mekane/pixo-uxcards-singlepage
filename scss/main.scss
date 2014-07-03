@@ -24,6 +24,23 @@ header {
     background: $barColor;
     text-align: center;
     font-size: 18px;
+
+    .button {
+        cursor: pointer;
+        display: inline-block;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        color: #eee;
+
+        &.left {
+            float: left;
+        }
+
+        &.right {
+            float: right;
+        }
+    }
 }
 
 main {

@@ -8,7 +8,9 @@
 <body ng-controller="main as ctrl">
 
     <header>
+        <a class="button left" ng-click="ctrl.reload()">Start Over</a>
         Cards remaining: {{cardList.length}}
+        <a class="button right" ng-click="ctrl.rejectRest()">Skip to End</a>
     </header>
 
     <main ng-show="cardList.length > 0">
@@ -19,15 +21,15 @@
     </main>
 
     <aside ng-show="ready && cardList.length === 0">
-        <header>Yes:</header>
+        <header>You indicated that these are issues:</header>
         <ul>
             <li ng-repeat="card in cardsInYesPile">{{card.problem}}</li>
         </ul>
-        <header>No:</header>
+        <header>You indicated that these are not issues:</header>
         <ul>
             <li ng-repeat="card in cardsInNoPile">{{card.problem}}</li>
         </ul>
-        <header>Rejected:</header>
+        <header>You skipped these:</header>
         <ul>
             <li ng-repeat="card in cardsRejected">{{card.problem}}</li>
         </ul>
@@ -48,18 +50,22 @@
 
         var uxApp = angular.module('uxCards', [])
         .controller('main', function($scope, $http){
-            $http.get('cardText.json').then(function(results){
-                var cardList = results.data,
-                    currentCard = cardList.pop();
 
-                $scope.cardList = cardList;
-                $scope.currentCard = currentCard;
-                $scope.ready = true;
-            });
-            
-            $scope.cardsInYesPile = [];
-            $scope.cardsInNoPile = [];
-            $scope.cardsRejected = [];
+            this.reload = function reload(){
+                $scope.ready = false;
+
+                $http.get('cardText.json').then(function(results){
+                    var cardList = results.data,
+                        currentCard = cardList.pop();
+
+                    $scope.cardList = cardList;
+                    $scope.currentCard = currentCard;
+                    $scope.ready = true;
+                });
+                $scope.cardsInYesPile = [];
+                $scope.cardsInNoPile = [];
+                $scope.cardsRejected = [];
+            };
 
             this.sortCardYes = function sortCardYes( card ){
                 $scope.cardsInYesPile.push(card);
@@ -73,10 +79,19 @@
                 $scope.cardsRejected.push(card);
             };
 
+            this.rejectRest = function rejectRest(){
+                if ( $scope.cardList.length > 0 ){
+                    $scope.cardsRejected = $scope.cardsRejected.concat( $scope.cardList );
+                    $scope.cardList = [];
+                }
+            };
+
             this.nextCard = function nextCard(){
                 $scope.lastCard = $scope.currentCard;
                 $scope.currentCard = $scope.cardList.pop(); 
             }
+
+            this.reload();
         })
         ;
     </script>
