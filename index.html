@@ -5,11 +5,33 @@
     <link rel="stylesheet" href="css/main.css">
     <meta name="description" content="UX Technique Cards by Melinda Miller &amp; Cate Kompare This work is licensed under the Creative Commons Attribution- NonCommercial-ShareAlike 4.0 International License.">
 </head>
-<body ng-controller="main">
+<body ng-controller="main as ctrl">
+
 
     <span>Cards remaining: {{cardList.length}}</span><br/>
-    <span>Current Card:</span><br/>
-    <pre>{{currentCard}}</pre>
+
+    <main>
+        <div class="yes"  ng-click="ctrl.sortCardYes(currentCard); ctrl.nextCard();">Yes</div>
+        <div class="card">{{currentCard.problem}}</div>
+        <div class="no"   ng-click="ctrl.sortCardNo(currentCard); ctrl.nextCard();">No</div>
+        <div class="skip" ng-click="ctrl.rejectCard(currentCard); ctrl.nextCard();">N/A</div>
+    </main>
+
+    <aside>
+        <header>Yes:</header>
+        <ul>
+            <li ng-repeat="card in cardsInYesPile">{{card.problem}}</li>
+        </ul>
+        <header>No:</header>
+        <ul>
+            <li ng-repeat="card in cardsInNoPile">{{card.problem}}</li>
+        </ul>
+        <header>Rejected:</header>
+        <ul>
+            <li ng-repeat="card in cardsRejected">{{card.problem}}</li>
+        </ul>
+    </aside>
+
 
     <footer>
         UX Technique Cards by Melinda Miller &amp; Cate Kompare.<br/>
@@ -48,11 +70,12 @@
                 $scope.cardsRejected.push(card);
             };
 
-            this.nextCard = function nextCard( card ){
-                $scope.lastCard = currentCard;
+            this.nextCard = function nextCard(){
+                $scope.lastCard = $scope.currentCard;
                 $scope.currentCard = $scope.cardList.pop(); 
             }
-        });
+        })
+        ;
     </script>
 </body>
 </html>
