@@ -1,0 +1,86 @@
+$buttonWidth: 100px;
+$buttonBorder: 5px;
+$buttonSize: $buttonWidth + $buttonBorder * 2;
+$barColor: #444;
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    font-family: "Open-sans", arial, sans-serif;
+    color: #eee;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #666;
+}
+
+header {
+    padding: 25px;
+    background: $barColor;
+    text-align: center;
+    font-size: 18px;
+}
+
+main {
+    width: 500px;
+    margin: $buttonSize auto;
+    padding: $buttonSize $buttonSize*1.5 $buttonSize*2;
+    position: relative;
+}
+
+.card {
+
+}
+
+.yes,
+.no {
+    width: $buttonWidth;
+    height: $buttonWidth;
+    border-radius: $buttonWidth;
+    border: $buttonBorder solid $barColor;
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+    color: white;
+    text-align: center;
+    font-size: $buttonWidth * 0.8;
+    line-height: $buttonWidth * 0.9;
+}
+
+.yes {
+    left: 0;
+    line-height: $buttonWidth;
+    background: #dff0d8;
+    color: #3c763d;
+    border-color: #d6e9c6;
+}
+
+.no {
+    right: 0;
+    background: #f2dede;
+    color: #a94442;
+    border-color: #ebccd1;
+}
+
+.skip {
+
+}
+
+footer {
+    color: #bbb;
+    background: $barColor; 
+    text-align: center;
+    font-size: 12px;
+    padding: 12px 0;
+
+    a {
+        color: #ccc;
+    }
+}
+

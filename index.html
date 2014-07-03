@@ -7,17 +7,18 @@
 </head>
 <body ng-controller="main as ctrl">
 
+    <header>
+        Cards remaining: {{cardList.length}}
+    </header>
 
-    <span>Cards remaining: {{cardList.length}}</span><br/>
-
-    <main>
-        <div class="yes"  ng-click="ctrl.sortCardYes(currentCard); ctrl.nextCard();">Yes</div>
+    <main ng-show="cardList.length > 0">
+        <div class="yes"  ng-click="ctrl.sortCardYes(currentCard); ctrl.nextCard();">Y</div>
         <div class="card">{{currentCard.problem}}</div>
-        <div class="no"   ng-click="ctrl.sortCardNo(currentCard); ctrl.nextCard();">No</div>
-        <div class="skip" ng-click="ctrl.rejectCard(currentCard); ctrl.nextCard();">N/A</div>
+        <div class="no"   ng-click="ctrl.sortCardNo(currentCard); ctrl.nextCard();">N</div>
+        <div class="skip" ng-click="ctrl.rejectCard(currentCard); ctrl.nextCard();">&times;</div>
     </main>
 
-    <aside>
+    <aside ng-show="ready && cardList.length === 0">
         <header>Yes:</header>
         <ul>
             <li ng-repeat="card in cardsInYesPile">{{card.problem}}</li>
@@ -32,6 +33,7 @@
         </ul>
     </aside>
 
+    <div class="spinner" ng-show="!ready">LOADING...</div>
 
     <footer>
         UX Technique Cards by Melinda Miller &amp; Cate Kompare.<br/>
@@ -52,6 +54,7 @@
 
                 $scope.cardList = cardList;
                 $scope.currentCard = currentCard;
+                $scope.ready = true;
             });
             
             $scope.cardsInYesPile = [];
